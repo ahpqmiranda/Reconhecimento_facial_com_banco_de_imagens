@@ -1,0 +1,16 @@
+Index: database.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/database.py b/database.py
+--- a/database.py	
++++ b/database.py	(date 1642647556793)
+@@ -1,4 +1,7 @@
+ import Face_Recognition as ft
++from face_recognition import api
++from face_recognition import face_recognition_cli
++from face_recognition import face_detection_cli
+ from PIL import Image, ImageDraw
+ 
+ imagem001 = ft.load_image_file('')
