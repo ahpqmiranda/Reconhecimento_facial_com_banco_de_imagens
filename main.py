@@ -14,5 +14,5 @@ print('Foram encontradas {} pessoas'.format(len(faces)))
 for coordenadas in faces:
     top, right, bottom, left = coordenadas  # separo as coordenadas do vetor em variáveis (as variáveis precisam ser chamadas de top, right, bottom, left ou não funciona, ele não chama a biblioteca api)
     rosto = imagem[top:bottom, left:right]  # monto uma box com dimensões equivalentes aos rostos encontrados
-    recorte = Image.fromarray(rosto)  # recorta a imagem original com a box na região do rosto da pessoa
-    recorte.show()  # mostra a imagem recortada do rosto
+    img_final = Image.fromarray(rosto)  # recorta a imagem original com a box na região do rosto da pessoa
+    img_final.show()  # mostra a imagem recortada do rosto
