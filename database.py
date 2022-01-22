@@ -1,7 +1,6 @@
 import face_recognition as fr
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
-from fonts import ttf
 
 
 #banco de imagens
@@ -15,20 +14,29 @@ imagem002_encoding = fr.face_encodings(imagem002)[0]
 imagem003 = fr.load_image_file('pessoas-conhecidas/Ruan.jpeg')
 imagem003_encoding = fr.face_encodings(imagem003)
 
+imagem004 = fr.load_image_file('pessoas-conhecidas/WhatsApp Image 2022-01-22 at 16.18.37.jpeg')
+imagem004_encoding = fr.face_encodings(imagem004)
+
+imagem005 = fr.load_image_file('pessoas-conhecidas/WhatsApp Image 2022-01-22 at 15.46.32.jpeg')
+imagem005_encoding = fr.face_encodings(imagem005)
+
 # bloco de imagens previamente armazenadas
 # cada imagem adicionada precisa ser vinculada a versão encoding e separado por virgula
 database_rostos = [
     imagem001_encoding,
     imagem002_encoding,
-    imagem003_encoding
-]
+    imagem003_encoding,
+    imagem004_encoding,
+    imagem005_encoding,
 
 # bloco de nomes previamente armazenados
 # cada nome adicionado precisa ser como string e separado por virgula
 database_nomes = [
     "Alan",
     "Wanessa",
-    "Ruan"
+    "Ruan",
+    "Michel",
+    "a garota do grupo"
 ]
 
 # carregamento de uma imagem para identificar os rostos
