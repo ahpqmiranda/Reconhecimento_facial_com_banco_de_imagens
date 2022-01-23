@@ -10,3 +10,4 @@ Pillow| Manipulação de imagens
 Face_Recognition | Reconhecimento Facial
 
 
+

@@ -75,7 +75,7 @@ def face_distance(face_encodings, face_to_compare):
     return np.linalg.norm(face_encodings - face_to_compare, axis=1)
 
 
-def load_image_file(file, mode='RGB'):
+def load_image_file(file: object, mode: object = 'RGB') -> object:
     """
     Loads an image file (.jpg, .png, etc) into a numpy array
 
@@ -83,6 +83,7 @@ def load_image_file(file, mode='RGB'):
     :param mode: format to convert the image to. Only 'RGB' (8-bit RGB, 3 channels) and 'L' (black and white) are supported.
     :return: image contents as numpy array
     """
+
     im = PIL.Image.open(file)
     if mode:
         im = im.convert(mode)
@@ -116,9 +117,11 @@ def face_locations(img, number_of_times_to_upsample=1, model="hog"):
     :return: A list of tuples of found face locations in css (top, right, bottom, left) order
     """
     if model == "cnn":
-        return [_trim_css_to_bounds(_rect_to_css(face.rect), img.shape) for face in _raw_face_locations(img, number_of_times_to_upsample, "cnn")]
+        return [_trim_css_to_bounds(_rect_to_css(face.rect), img.shape) for face in
+                _raw_face_locations(img, number_of_times_to_upsample, "cnn")]
     else:
-        return [_trim_css_to_bounds(_rect_to_css(face), img.shape) for face in _raw_face_locations(img, number_of_times_to_upsample, model)]
+        return [_trim_css_to_bounds(_rect_to_css(face), img.shape) for face in
+                _raw_face_locations(img, number_of_times_to_upsample, model)]
 
 
 def _raw_face_locations_batched(images, number_of_times_to_upsample=1, batch_size=128):
@@ -143,6 +146,7 @@ def batch_face_locations(images, number_of_times_to_upsample=1, batch_size=128):
     :param batch_size: How many images to include in each GPU processing batch.
     :return: A list of tuples of found face locations in css (top, right, bottom, left) order
     """
+
     def convert_cnn_detections_to_css(detections):
         return [_trim_css_to_bounds(_rect_to_css(face.rect), images[0].shape) for face in detections]
 
@@ -188,7 +192,8 @@ def face_landmarks(face_image, face_locations=None, model="large"):
             "left_eye": points[36:42],
             "right_eye": points[42:48],
             "top_lip": points[48:55] + [points[64]] + [points[63]] + [points[62]] + [points[61]] + [points[60]],
-            "bottom_lip": points[54:60] + [points[48]] + [points[60]] + [points[67]] + [points[66]] + [points[65]] + [points[64]]
+            "bottom_lip": points[54:60] + [points[48]] + [points[60]] + [points[67]] + [points[66]] + [points[65]] + [
+                points[64]]
         } for points in landmarks_as_tuples]
     elif model == 'small':
         return [{
@@ -211,7 +216,8 @@ def face_encodings(face_image, known_face_locations=None, num_jitters=1, model="
     :return: A list of 128-dimensional face encodings (one for each face in the image)
     """
     raw_landmarks = _raw_face_landmarks(face_image, known_face_locations, model)
-    return [np.array(face_encoder.compute_face_descriptor(face_image, raw_landmark_set, num_jitters)) for raw_landmark_set in raw_landmarks]
+    return [np.array(face_encoder.compute_face_descriptor(face_image, raw_landmark_set, num_jitters)) for
+            raw_landmark_set in raw_landmarks]
 
 
 def compare_faces(known_face_encodings, face_encoding_to_check, tolerance=0.6):

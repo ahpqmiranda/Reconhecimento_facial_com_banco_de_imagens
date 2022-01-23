@@ -1,14 +1,14 @@
 import face_recognition as fr
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 import numpy as np
 
 
 #banco de imagens
-imagem001 = fr.load_image_file("pessoas-conhecidas/alan3.png")
+imagem001 = fr.load_image_file("pessoas-conhecidas/alan1.jpg")
 imagem001_encoding = fr.face_encodings(imagem001)[0]
 
 # Load a second sample picture and learn how to recognize it.
-imagem002 = fr.load_image_file('pessoas-conhecidas/wanessa.jpg')
+imagem002 = fr.load_image_file('pessoas-conhecidas/Ronaldo que não é o Cristiano.jpeg')
 imagem002_encoding = fr.face_encodings(imagem002)[0]
 
 imagem003 = fr.load_image_file('pessoas-conhecidas/Ruan.jpeg')
@@ -20,6 +20,9 @@ imagem004_encoding = fr.face_encodings(imagem004)
 imagem005 = fr.load_image_file('pessoas-conhecidas/WhatsApp Image 2022-01-22 at 15.46.32.jpeg')
 imagem005_encoding = fr.face_encodings(imagem005)
 
+imagem006 = fr.load_image_file('pessoas-conhecidas/Giordano.jpeg')
+imagem006_encoding = fr.face_encodings(imagem006)
+
 # bloco de imagens previamente armazenadas
 # cada imagem adicionada precisa ser vinculada a versão encoding e separado por virgula
 database_rostos = [
@@ -28,19 +31,22 @@ database_rostos = [
     imagem003_encoding,
     imagem004_encoding,
     imagem005_encoding,
+    imagem006_encoding
+    ]
 
 # bloco de nomes previamente armazenados
 # cada nome adicionado precisa ser como string e separado por virgula
 database_nomes = [
     "Alan",
-    "Wanessa",
+    "Ronaldo",
     "Ruan",
     "Michel",
-    "a garota do grupo"
+    "Victória",
+    "Giordano"
 ]
 
 # carregamento de uma imagem para identificar os rostos
-loaded_imagem = fr.load_image_file("pessoas-conhecidas/alan1wanessa1.jpg")
+loaded_imagem = fr.load_image_file("pessoas-conhecidas/Ronaldo que não é o Cristiano.jpeg")
 
 # análise da imagem para identificação dos rostos presentes
 faces = fr.face_locations(loaded_imagem)
@@ -76,8 +82,6 @@ for (top, right, bottom, left), face_encoding in zip(faces, faces_encodings):
     text_width, text_height = render.textsize(nome)
     render.rectangle(((left, bottom - text_height), (right, bottom)), fill=(0, 255, 0), outline=(0, 255, 0))
     render.text((left + 20, bottom - text_height), nome, fill=(0, 0, 0, 0))
-
-    # DAR UM JEITO DE COLOCAR FORMATAÇÃO DE STRING
 
 # uma vez gerado o quadro de legenda, as informações são apagadas
 del render
