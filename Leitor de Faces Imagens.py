@@ -7,7 +7,6 @@ import numpy as np
 imagem001 = fr.load_image_file("pessoas-conhecidas/alan1.jpg")
 imagem001_encoding = fr.face_encodings(imagem001)[0]
 
-# Load a second sample picture and learn how to recognize it.
 imagem002 = fr.load_image_file('pessoas-conhecidas/Ronaldo que não é o Cristiano.jpeg')
 imagem002_encoding = fr.face_encodings(imagem002)[0]
 
@@ -58,14 +57,14 @@ render = ImageDraw.Draw(imagem_final)
 
 # Loop para encontrar rostos desconhecidos
 # (face_encoding e top, right, bottom, left estão definidas no API, logo, devem ter obrigatoriamente estes nomes para serem utilizadas)
+# o loop a cima vai procurar um nome associado a database_rostos, se não encontrar, vai usar o nome 'indigente'
+# sim, o 'else' das funções for.. else pode ser omitido neste tipo de estrutura, já subentende
+
 for (top, right, bottom, left), face_encoding in zip(faces, faces_encodings):
-    # fr.compare_faces vai... comparar os rostos
+
     teste_positivo = fr.compare_faces(database_rostos, face_encoding)
-    #não identificou alguém? indigente
-    #tem um else aqui
     nome = "Indigente"
-    # o loop a cima vai procurar um nome associado a database_rostos, se não encontrar, vai usar o nome 'indigente'
-    # sim, o 'else' das funções for.. else pode ser omitido neste tipo de estrutura, já subentende
+
 
     # esse aqui é o bloco do algoritmo que encaixa os nomes
     # face distances verifica na verdade a verossimilhança entre as imagens carregada no face_encoding e no banco de imagens

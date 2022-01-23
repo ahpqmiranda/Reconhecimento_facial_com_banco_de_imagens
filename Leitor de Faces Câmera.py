@@ -1,18 +1,22 @@
-# PIL, biblioteca de manipulação de imagens
-from PIL import Image
-# face-recogniti biblioteca p/ reconhecimento facial (IA)
-import face_recognition as fr  # abreviei o nome da biblioteca para fr
+import cv2
+#biblioteca de classificação da opencv, pego no github do projeto
+xml_haar = 'haarcascade_frontalface_alt2.xml'
+#carregando a base de dados do classificador
+faceClassification = cv2.CascadeClassifier(xml_haar)
 
-# carregando um arquivo de imagem
-imagem = fr.load_image_file("pessoas-conhecidas/alan3wanessa3.jpg")
-# converte a imagem em vetor (R4)
-faces = fr.face_locations(imagem)
-# cada vetor é uma pessoa encontrada, uso a função len para contar quantos vetores tem
-print('Foram encontradas {} pessoas'.format(len(faces)))
+capture = cv2.VideoCapture(1)
+capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1024)
+capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 768)
 
-# esse loop vai realizar o processo de 0 a n vetores encontrados em "faces"
-for coordenadas in faces:
-    top, right, bottom, left = coordenadas  # separo as coordenadas do vetor em variáveis (as variáveis precisam ser chamadas de top, right, bottom, left ou não funciona, ele não chama a biblioteca api)
-    rosto = imagem[top:bottom, left:right]  # monto uma box com dimensões equivalentes aos rostos encontrados
-    img_final = Image.fromarray(rosto)  # recorta a imagem original com a box na região do rosto da pessoa
-    img_final.show()  # mostra a imagem recortada do rosto
+while not cv2.waitKey(20) & 0xFF == ord("q"):
+
+    ret, frame_color = capture.read()
+    gray = cv2.cvtColor(frame_color, cv2.COLOR_BGR2GRAY)
+
+    faces = faceClassification.detectMultiScale(gray)
+
+    for x, y, w, h in faces:
+        cv2.rectangle(frame_color, (x, y), (x+w, y+h), (0, 0, 255), 2)
+
+    cv2.imshow('color', frame_color)
+    cv2.imshow('gray', gray)
