@@ -15,7 +15,7 @@ while not cv2.waitKey(20) & 0xFF == ord("q"):
 
     # a captura de video e direcionada para a variável frame_color, a deteção das faces é feita na variável gray
     # o algoritmo responde melhor na leitura de faces numa imagem em tons de cinza
-    frame_color = capture.read()
+    ret, frame_color = capture.read()
     gray = cv2.cvtColor(frame_color, cv2.COLOR_BGR2GRAY)
     faces = faceclass.detectMultiScale(gray)
 
