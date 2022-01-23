@@ -5,10 +5,10 @@ import numpy as np
 
 #banco de imagens
 imagem001 = fr.load_image_file("pessoas-conhecidas/alan1.jpg")
-imagem001_encoding = fr.face_encodings(imagem001)[0]
+imagem001_encoding = fr.face_encodings(imagem001)
 
 imagem002 = fr.load_image_file('pessoas-conhecidas/Ronaldo que não é o Cristiano.jpeg')
-imagem002_encoding = fr.face_encodings(imagem002)[0]
+imagem002_encoding = fr.face_encodings(imagem002)
 
 imagem003 = fr.load_image_file('pessoas-conhecidas/Ruan.jpeg')
 imagem003_encoding = fr.face_encodings(imagem003)
@@ -42,7 +42,7 @@ database_nomes = [
     "Michel",
     "Victória",
     "Giordano"
-]
+    ]
 
 # carregamento de uma imagem para identificar os rostos
 loaded_imagem = fr.load_image_file("pessoas-conhecidas/Ronaldo que não é o Cristiano.jpeg")
@@ -63,7 +63,7 @@ render = ImageDraw.Draw(imagem_final)
 for (top, right, bottom, left), face_encoding in zip(faces, faces_encodings):
 
     teste_positivo = fr.compare_faces(database_rostos, face_encoding)
-    nome = "Indigente"
+    nome = "Desconhecido"
 
 
     # esse aqui é o bloco do algoritmo que encaixa os nomes
@@ -76,13 +76,14 @@ for (top, right, bottom, left), face_encoding in zip(faces, faces_encodings):
         nome = database_nomes[matched]
 
     # aqui é criado um retangulo da imagem (render), segue as proporções do vetor gerado pelo face_encoding (R4)
-    render.rectangle(((left, top), (right, bottom)), outline=(0, 255, 0)) #Cor verde
+    render.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
     # cria uma legenda na imagem
-    text_width, text_height = render.textsize(nome)
-    render.rectangle(((left, bottom - text_height), (right, bottom)), fill=(0, 255, 0), outline=(0, 255, 0))
-    render.text((left + 20, bottom - text_height), nome, fill=(0, 0, 0, 0))
+    text_width, text_height = render.textsize(name)
+    render.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
+    render.text((left + 6, bottom - text_height - 5), name, fill=(255, 255, 255, 255))
 
 # uma vez gerado o quadro de legenda, as informações são apagadas
 del render
 # Mostra na tela a imagem final
 imagem_final.show()
+

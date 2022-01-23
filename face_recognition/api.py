@@ -220,10 +220,11 @@ def face_encodings(face_image, known_face_locations=None, num_jitters=1, model="
             raw_landmark_set in raw_landmarks]
 
 
-def compare_faces(known_face_encodings, face_encoding_to_check, tolerance=0.6):
+def compare_faces(known_face_encodings: object, face_encoding_to_check: object, tolerance: object = 0.6) -> object:
     """
     Compare a list of face encodings against a candidate encoding to see if they match.
 
+    :rtype: object
     :param known_face_encodings: A list of known face encodings
     :param face_encoding_to_check: A single face encoding to compare against the list
     :param tolerance: How much distance between faces to consider it a match. Lower is more strict. 0.6 is typical best performance.
