@@ -20,7 +20,7 @@ Fluxograma:
 
 Algumas notas:
 1. A biblioteca opencv precisa do arquivo xml disponível no github dos desenvolvedores, sendo que a haarcascade_frontalface_alt2 não é a única.
-2. O comando `capture.set(cv.CAP_PROP_FRAME_(WIDTH e HEIGHT)` dependem de renderização de vídeo, então, evitar colocar resoluções altas.
+2. O comando `capture.set(cv2.CAP_PROP_FRAME_(WIDTH e HEIGHT)` dependem de renderização de vídeo, então, evitar colocar resoluções altas.
 3. O comando ``faceclass.detect(MultiScale)()`` funciona melhor em imagens não coloridas.
 
 

@@ -13,10 +13,10 @@ imagem002_encoding = fr.face_encodings(imagem002)[0]
 imagem003 = fr.load_image_file('pessoas-conhecidas/Ruan.jpeg')
 imagem003_encoding = fr.face_encodings(imagem003)
 
-imagem004 = fr.load_image_file('pessoas-conhecidas/WhatsApp Image 2022-01-22 at 16.18.37.jpeg')
+imagem004 = fr.load_image_file('pessoas-conhecidas/Michel.jpeg')
 imagem004_encoding = fr.face_encodings(imagem004)
 
-imagem005 = fr.load_image_file('pessoas-conhecidas/WhatsApp Image 2022-01-22 at 15.46.32.jpeg')
+imagem005 = fr.load_image_file('pessoas-conhecidas/victória.jpeg')
 imagem005_encoding = fr.face_encodings(imagem005)
 
 imagem006 = fr.load_image_file('pessoas-conhecidas/Giordano.jpeg')
