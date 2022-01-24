@@ -78,9 +78,9 @@ for (top, right, bottom, left), face_encoding in zip(faces, faces_encodings):
     # aqui é criado um retangulo da imagem (render), segue as proporções do vetor gerado pelo face_encoding (R4)
     render.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
     # cria uma legenda na imagem
-    text_width, text_height = render.textsize(name)
+    text_width, text_height = render.textsize(nome)
     render.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
-    render.text((left + 6, bottom - text_height - 5), name, fill=(255, 255, 255, 255))
+    render.text((left + 6, bottom - text_height - 5), nome, fill=(255, 255, 255, 255))
 
 # uma vez gerado o quadro de legenda, as informações são apagadas
 del render
